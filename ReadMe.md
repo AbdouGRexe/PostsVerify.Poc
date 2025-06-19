@@ -1,4 +1,4 @@
-## Create data base
+## Création de la base de données et son modèle
 
 Ouvrir console depuis Visual Studio ou CMD
 
@@ -10,11 +10,11 @@ dotnet tool install --global dotnet-ef
 
 cd PostsVerify.Poc.Api
 
-### Supprimer la base si nécessaire
+### (si nécessaire) Supprimer la base 
 
 dotnet ef -v database drop
 
-### Générer les scripts de création de base de données et le modèle (les tables)
+### (si nécessaire) Générer les scripts de création de base de données et le modèle (les tables)
 
 dotnet ef -v migrations add CreateModel --output-dir "Infrastructure/Storage.Relational/EntityFrameworkCore/Migrations" --namespace "PostsVerify.Poc.Api.Infrastructure.Storage.Relational.EntityFrameworkCore.Migrations"
 
