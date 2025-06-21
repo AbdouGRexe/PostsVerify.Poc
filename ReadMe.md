@@ -38,6 +38,6 @@ dotnet ef -v database update
 
 ## Lancer l'application
 
- Depuis Visual Studio, lancer l'application, cela ouvre une page swagger qui liste les différents endpoints
+ Depuis Visual Studio, lancer l'application, cela ouvre une page swagger qui liste les différents endpoints.
 
- Utiliser le bouton 'Try it out'
+ Utiliser le bouton 'Try it out' pour créer une requête vers les endponts.
