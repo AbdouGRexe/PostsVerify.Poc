@@ -2,6 +2,7 @@
 using PostsVerify.Poc.Api.Domain;
 using PostsVerify.Poc.Api.Dtos;
 using PostsVerify.Poc.Api.Infrastructure.Storage.Relational.EntityFrameworkCore;
+using System;
 using System.Threading.Tasks;
 
 namespace PostsVerify.Poc.Api.Application;
@@ -25,6 +26,13 @@ internal class AddReviewService : IAddReviewService
             Body = input.Body
         };
 
-        return (await _context.AddAsync(review)).Entity.Id;
+        await _context.AddAsync(review);
+
+        if (await  _context.SaveChangesAsync() == 0)
+        {
+            throw new Exception();
+        }
+
+        return review.Id;
     }
 }

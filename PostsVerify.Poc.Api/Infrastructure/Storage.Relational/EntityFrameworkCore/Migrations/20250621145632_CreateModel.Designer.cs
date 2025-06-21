@@ -11,7 +11,7 @@ using PostsVerify.Poc.Api.Infrastructure.Storage.Relational.EntityFrameworkCore;
 namespace PostsVerify.Poc.Api.Infrastructure.Storage.Relational.EntityFrameworkCore.Migrations
 {
     [DbContext(typeof(PostsVerifyDbContext))]
-    [Migration("20250618160046_CreateModel")]
+    [Migration("20250621145632_CreateModel")]
     partial class CreateModel
     {
         /// <inheritdoc />

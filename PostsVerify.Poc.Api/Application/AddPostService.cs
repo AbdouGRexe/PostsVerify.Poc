@@ -19,27 +19,43 @@ internal class AddPostService : IAddPostService
 
     public async Task<int> AddAsync(AddPostIDto input)
     {
-        var post = new Post
+        using var transaction = await _context.Database.BeginTransactionAsync();
+        try
         {
-            Title = input.Title,
-            Body = input.Body,
-            DateCreation = DateTime.Now
-        };
+            var post = new Post
+            {
+                Title = input.Title,
+                Body = input.Body,
+                DateCreation = DateTime.Now
+            };
 
-        post.SourceId = await CreateSourceIf(input);
-        post.AuthorUserId = await CreateAuthorIf(input);
-        post.CreatorUserId = await CreateCreatorIf(input);
-        post.AreaId = await CreateAreaIf(input);
+            post.SourceId = await CreateSourceIf(input);
+            post.AuthorUserId = await CreateAuthorIf(input);
+            post.CreatorUserId = await CreateCreatorIf(input);
+            post.AreaId = await CreateAreaIf(input);
 
-        if (input.Verify)
-        {
-            post.Score = (byte)new Random().Next(1, 10);
-            post.DateLastScoreCalculation = DateTime.Now;
+            if (input.Verify)
+            {
+                post.Score = (byte)new Random().Next(1, 10);
+                post.DateLastScoreCalculation = DateTime.Now;
+            }
+
+            await _context.AddAsync(post);
+
+            if (await _context.SaveChangesAsync() == 0)
+            {
+                throw new Exception();
+            }
+
+            await transaction.CommitAsync();
+
+            return post.Id;
         }
-
-        //await _context.SaveChangesAsync(); // à voir
-
-        return (await _context.AddAsync(post)).Entity.Id;
+        catch (Exception)
+        {
+            await transaction.RollbackAsync();
+            throw;
+        }
     }
 
     private async Task<int> CreateSourceIf(AddPostIDto input)
@@ -52,7 +68,14 @@ internal class AddPostService : IAddPostService
 
         source = new Source { Label = input.Source, Link = input.Link, Score = (byte)new Random().Next(1, 10) };
 
-        return (await _context.AddAsync(source)).Entity.Id;
+        await _context.AddAsync(source);
+
+        if (await _context.SaveChangesAsync() == 0)
+        {
+            throw new Exception();
+        }
+
+        return source.Id;
     }
 
     private async Task<int> CreateAuthorIf(AddPostIDto input)
@@ -65,7 +88,14 @@ internal class AddPostService : IAddPostService
 
         user = new User { Label = input.Author, Score = (byte)new Random().Next(1, 10) };
 
-        return (await _context.AddAsync(user)).Entity.Id;
+        await _context.AddAsync(user);
+
+        if (await _context.SaveChangesAsync() == 0)
+        {
+            throw new Exception();
+        }
+
+        return user.Id;
     }
 
     private async Task<int> CreateCreatorIf(AddPostIDto input)
@@ -78,7 +108,14 @@ internal class AddPostService : IAddPostService
 
         user = new User { Label = input.Creator, Score = (byte)new Random().Next(1, 10) };
 
-        return (await _context.AddAsync(user)).Entity.Id;
+        await _context.AddAsync(user);
+
+        if (await _context.SaveChangesAsync() == 0)
+        {
+            throw new Exception();
+        }
+
+        return user.Id;
     }
 
     private async Task<int> CreateAreaIf(AddPostIDto input)
@@ -91,6 +128,13 @@ internal class AddPostService : IAddPostService
 
         area = new Area { Label = input.Area };
 
-        return (await _context.AddAsync(area)).Entity.Id;
+        await _context.AddAsync(area);
+
+        if (await _context.SaveChangesAsync() == 0)
+        {
+            throw new Exception();
+        }
+
+        return area.Id;
     }
 }

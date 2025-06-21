@@ -4,5 +4,7 @@ wwwroot
 bin
 obj
 *.db
+*.db-shm
+*.db-wal
 
 
