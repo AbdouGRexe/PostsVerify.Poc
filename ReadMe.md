@@ -16,7 +16,7 @@ dotnet ef -v database update
 
 ### Option 2 : Recréer la migration et générer la base
 
-#### (si nécessaire) Supprimer la base 
+#### Supprimer la base 
 
 manuellement ou 
 
