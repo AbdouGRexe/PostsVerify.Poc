@@ -10,14 +10,34 @@ dotnet tool install --global dotnet-ef
 
 cd PostsVerify.Poc.Api
 
-### (si nécessaire) Supprimer la base 
+### Option 1 : Générer directement la base via le script de migration déjà existant
+
+dotnet ef -v database update
+
+### Option 2 : Recréer la migration et générer la base
+
+#### (si nécessaire) Supprimer la base 
+
+manuellement ou 
 
 dotnet ef -v database drop
 
-### (si nécessaire) Générer les scripts de création de base de données et le modèle (les tables)
+#### Supprimer la migration 
+
+manuellement ou 
+
+dotnet ef migrations remove
+
+#### Générer le script de migration
 
 dotnet ef -v migrations add CreateModel --output-dir "Infrastructure/Storage.Relational/EntityFrameworkCore/Migrations" --namespace "PostsVerify.Poc.Api.Infrastructure.Storage.Relational.EntityFrameworkCore.Migrations"
 
-### Exécuter
+#### Générer directement la base
 
 dotnet ef -v database update
+
+## Lancer l'application
+
+ Depuis Visual Studio, lancer l'application, cela ouvre une page swagger qui liste les différents endpoints
+
+ Utiliser le bouton 'Try it out'
