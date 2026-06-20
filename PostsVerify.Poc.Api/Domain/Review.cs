@@ -7,6 +7,5 @@ public class Review
     public Post Post { get; set; }
     public int UserId { get; set; }
     public User User { get; set; }
-    public bool Vote { get; set; }
     public string Body { get; set; }
 }

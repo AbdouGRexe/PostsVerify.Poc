@@ -5,5 +5,5 @@ public class UserTDto
     public int Id { get; init; }
     public string Label { get; init; }
     public string Area { get; set; }
-    public byte? Score { get; set; }
+    public double? ReputationScore { get; set; }
 }

@@ -22,7 +22,6 @@ internal class AddReviewService : IAddReviewService
         {
             PostId = input.PostId,
             UserId = input.UserId,
-            Vote = input.Vote,
             Body = input.Body
         };
 

@@ -8,7 +8,8 @@ public class User
     public string Label { get; set; }
     public int? AreaId { get; set; }
     public Area Area { get; set; }
-    public byte? Score { get; set; }
+    public double ReputationScore { get; set; }
+    public bool Initiated { get; set; } =  false;
     public ICollection<Review> Reviews { get; set; }
     public ICollection<Post> CreatedPosts { get; set; }
     public ICollection<Post> AuthoredPosts { get; set; }

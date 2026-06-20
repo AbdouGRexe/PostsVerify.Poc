@@ -7,6 +7,6 @@ public class Source
     public int Id { get; set; }
     public string Label { get; set; }
     public string Link { get; set; }
-    public byte? Score { get; set; }
+    public double Score { get; set; }
     public ICollection<Post> Posts { get; set; }
 }

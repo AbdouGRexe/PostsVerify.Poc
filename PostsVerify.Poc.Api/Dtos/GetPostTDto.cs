@@ -14,6 +14,6 @@ public class GetPostTDto
     public int? AreaId { get; init; }
     public string Area { get; init; }
     public DateTime DateCreation { get; init; }
-    public byte? Score { get; init; }
+    public double EstimatedAccuracyScore { get; init; }
     public DateTime? DateLastScoreCalculation { get; init; }
 }

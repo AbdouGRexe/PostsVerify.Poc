@@ -36,7 +36,7 @@ internal class AddPostService : IAddPostService
 
             if (input.Verify)
             {
-                post.Score = (byte)new Random().Next(1, 10);
+                post.EstimatedAccuracyScore = new Random().Next(1, 10);
                 post.DateLastScoreCalculation = DateTime.Now;
             }
 
@@ -66,7 +66,7 @@ internal class AddPostService : IAddPostService
             return source.Id;
         }
 
-        source = new Source { Label = input.Source, Link = input.Link, Score = (byte)new Random().Next(1, 10) };
+        source = new Source { Label = input.Source, Link = input.Link, Score = new Random().Next(1, 10) };
 
         await _context.AddAsync(source);
 
@@ -86,7 +86,7 @@ internal class AddPostService : IAddPostService
             return user.Id;
         }
 
-        user = new User { Label = input.Author, Score = (byte)new Random().Next(1, 10) };
+        user = new User { Label = input.Author, ReputationScore = new Random().Next(1, 10) };
 
         await _context.AddAsync(user);
 
@@ -106,7 +106,7 @@ internal class AddPostService : IAddPostService
             return user.Id;
         }
 
-        user = new User { Label = input.Creator, Score = (byte)new Random().Next(1, 10) };
+        user = new User { Label = input.Creator, ReputationScore = new Random().Next(1, 10) };
 
         await _context.AddAsync(user);
 

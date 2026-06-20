@@ -32,7 +32,7 @@ internal class GetPostService : IGetPostService
                 AreaId = post.AreaId,
                 Area = post.Area.Label,
                 DateCreation = post.DateCreation,
-                Score = post.Score,
+                EstimatedAccuracyScore = post.EstimatedAccuracyScore,
                 DateLastScoreCalculation = post.DateLastScoreCalculation
             })
             .FirstOrDefaultAsync();
@@ -46,7 +46,6 @@ internal class GetPostService : IGetPostService
             {
                 Id = review.Id,
                 User = review.User.Label,
-                Vote = review.Vote,
                 Body = review.Body
             })
             .ToArrayAsync();
@@ -71,7 +70,6 @@ internal class GetPostService : IGetPostService
             .Select(review => new GetPostReviewTDto
             {
                 User = review.User.Label,
-                Vote = review.Vote,
                 Body = review.Body
             })
             .FirstOrDefaultAsync();

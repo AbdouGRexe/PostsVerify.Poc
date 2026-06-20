@@ -49,7 +49,7 @@ public class SeedDatabase
             foreach (var user in users)
             {
                 user.AreaId = random.Next(1, 3);
-                user.Score = (byte)random.Next(1, 10);
+                user.ReputationScore = random.Next(1, 10);
             }
             context.SaveChanges();
         }

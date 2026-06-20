@@ -24,7 +24,7 @@ public class GetDataService : IGetDataService
                 Id = user.Id,
                 Label = user.Label,
                 Area = user.Area.Label,
-                Score = user.Score
+                ReputationScore = user.ReputationScore
             })
             .ToArrayAsync();
     }

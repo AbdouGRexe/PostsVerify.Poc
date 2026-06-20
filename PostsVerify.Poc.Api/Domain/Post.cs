@@ -17,7 +17,19 @@ public class Post
     public int CreatorUserId { get; set; }
     public User CreatorUser { get; set; }
     public DateTime DateCreation { get; set; }
-    public byte? Score { get; set; }
+    public double EstimatedAccuracyScore { get; set; }
+    public double PriorValue { get; set; } = 0.5;
+    public bool IsAggregated { get; private set; } = false;
     public DateTime? DateLastScoreCalculation { get; set; }
     public ICollection<Review> Reviews { get; set; }
+
+    public Post GetPostCopy()
+    {
+        return (Post)MemberwiseClone();
+    }
+    
+    public static Post GenerateEmpty()
+    {
+        return new Post();
+    }
 }

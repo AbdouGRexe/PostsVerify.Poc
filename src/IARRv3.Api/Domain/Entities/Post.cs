@@ -20,6 +20,7 @@ public class Post(Guid id, double estimatedAccuracyScore)
     
     public Post GetPostCopy()
     {
+        MemberwiseClone
         return new Post(Id, EstimatedAccuracyScore);
     }
 
