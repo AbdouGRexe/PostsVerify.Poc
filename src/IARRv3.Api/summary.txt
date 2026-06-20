@@ -1,0 +1,5 @@
+  Looking to have an event based pattern, maybe on the post, rating and (maybe not) user entities, as things are aggregated
+and de aggregated an event is triggered. This event is like a counter, when a certain number of times of operations or algorithmic
+runs are completed aggregation or something relating to the aggregation set may happen. 
+
+this would imply injecting one event object for each series of algorithmic runs, and inject infrastructure service.

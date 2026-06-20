@@ -1,0 +1,16 @@
+1. Find out how to have partial user aggregation (or a general one if possible not just for user[ratings]) 
+2. (minor) Fix the naming inconsistencies, rater-user object-post and so on, as well as var types. --> DONE
+3. Mock infrastructure standard and analytical --> DONE with an In-Memory Model 
+4. Have a way to inject the Algorithm and the Data from the main Accuracy Service...Design pattern: factory? strategy? --> DONE
+5. Decide on how pure the iterative algorithms should be --> Done 
+6. Unit Test CP method
+7. Decide on the accessibility of each module and class
+8. Decide on the overall functional pureness of all elements
+9. Decide when to use Enumerable (lazy loading: doesn't have indexing and count property, but memory efficient)
+   or use a standard collection (with eager loading potentially memory intensive) both have access to linq
+10. Decide if to use a generic or concrete, (IDictionary VS Dictionary)
+11. Decide if the iterative algorithm needs to be thread safe or not.
+12. Figure out how to null safely (for unset attributes).
+
+
+   
